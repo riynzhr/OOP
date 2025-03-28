@@ -21,6 +21,9 @@ public class HelloApplication extends Application {
         Image ship = new Image(getClass().getResourceAsStream("ship2.png"));
         ImageView iView2 = new ImageView(ship);
 
+        Image enemy = new Image(getClass().getResourceAsStream("enemyShip.png"));
+        ImageView iView3 = new ImageView(enemy);
+
         double sceneWidth = 1024;
         double sceneHeight = 720;
         double shipWidth = ship.getWidth();
@@ -30,21 +33,32 @@ public class HelloApplication extends Application {
         iView2.setX(shipX);
         iView2.setY(shipY);
 
+
+        //playerShip = new Ship();
+
         Group myG = new Group();
         myG.getChildren().add(iView);
         myG.getChildren().add(iView2);
+        myG.getChildren().add(iView3);
         Scene scene = new Scene(myG, sceneWidth, sceneHeight);
-        stage.setTitle("Hello!");
+        stage.setTitle("Space Invaders RZ");
         stage.setScene(scene);
         stage.show();
 
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
             @Override
-            public void handle(KeyEvent keyEvent) {
-                if (keyEvent.getCode() == KeyCode.LEFT) {
+            public void handle(KeyEvent event){
+
+                if (event.getCode() == KeyCode.D) {
+                    iView2.setLayoutX(iView2.getLayoutX() + 10);
+                } else if (event.getCode() == KeyCode.A) {
+                    iView2.setLayoutX(iView2.getLayoutX() - 10);
                 }
             }
         });
+
+
+
     }
 
     public static void main(String[] args) {
